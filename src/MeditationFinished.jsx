@@ -1,0 +1,10 @@
+import TIMER_STATES from "./TimerStates";
+
+const MeditationFinished = ({setTimerState}) =>{
+  return (<> 
+    <p>Congratulations! You must feel great! </p>
+    <p>Come back tomorrow and meditate for 5 seconds longer</p>
+    <p>or  <button onClick={() => setTimerState(TIMER_STATES.SET)}>meditate again</button></p>
+  </>)
+}
+export default MeditationFinished;

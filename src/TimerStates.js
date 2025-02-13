@@ -1,0 +1,9 @@
+ const TIMER_STATES = {
+  SET: 'SET',
+  STARTED: 'STARTED',
+  STOPPED: 'STOPPED',
+  PAUSED: 'PAUSED',
+  FINISHED: 'FINISHED'
+}
+
+export default TIMER_STATES
