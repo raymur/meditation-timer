@@ -9,12 +9,12 @@ const TimerControls = ({timerState, setTimerState, duration, setDuration}) => {
       <div className="flex space-x-2">
       <p>Select a value for the timer</p>
 
-      <button 
+      {import.meta.env.MODE === 'development'&& <button 
           className="px-4 py-2 bg-blue-500 text-white rounded-lg"
           onClick={() => setDuration(5)}
         >
           5 sec
-      </button>
+      </button>}
       <button 
           className="px-4 py-2 bg-blue-500 text-white rounded-lg"
           onClick={() => setDuration(60)}

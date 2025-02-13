@@ -16,12 +16,9 @@ function App() {
 
   return (
     <>
-      <div>
-        
-      </div>
-      <h1>Meditate daily! Start small and build your mindfulness and headspace little by little.</h1>
+        <div className="card">
+      <h2>Meditate daily! Start small and build your mindfulness and headspace little by little.</h2>
 
-      <div className="card">
         {
            timerState !== TIMER_STATES.FINISHED &&
             <Timer duration={duration} timerState={timerState} setTimerState={setTimerState} />
