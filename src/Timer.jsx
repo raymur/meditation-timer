@@ -29,9 +29,9 @@ const Timer = ({ duration, timerState, setTimerState}) => {
   const progress = (elapsed / duration) * 100;
 
   return (
-    <div className="relative flex items-center justify-center">
-      <svg className="absolute w-full h-full" viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" stroke="#e0e0e0" strokeWidth="10" fill="none" />
+    <div  class="timer w-full md:w-xl flex justify-center items-center">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="45" stroke="gray" strokeWidth="6" fill="none" />
         <circle
           cx="50"
           cy="50"
