@@ -13,7 +13,8 @@ function App() {
 
   const handleSetTimerState = (newState) => setTimerState(newState) 
   const handleSetDuration = (newDuration) => setDuration(newDuration) 
-
+ 
+  const buttonClass="px-4 py-2 m-1 bg-blue-500 text-white rounded-lg"
   return (
     <>
         <div className="card">
@@ -31,17 +32,17 @@ function App() {
             setDuration={handleSetDuration}
           
           ></TimerControls>
-          <button onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Start timer</button></>
+          <button class={buttonClass + " drop-shadow-lg"} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Start timer</button></>
         }
        {
           timerState === TIMER_STATES.STARTED &&
-          <><button onClick={()=> setTimerState(TIMER_STATES.PAUSED)}> Pause timer</button>
-          <button onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
+          <><button class={buttonClass} onClick={()=> setTimerState(TIMER_STATES.PAUSED)}> Pause timer</button>
+          <button class={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
         }
        {
           timerState === TIMER_STATES.PAUSED &&
-          <><button onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Resume timer</button>
-          <button onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
+          <><button class={buttonClass} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Resume timer</button>
+          <button class={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
         }
        {
           timerState === TIMER_STATES.FINISHED &&

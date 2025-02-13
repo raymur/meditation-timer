@@ -29,14 +29,14 @@ const Timer = ({ duration, timerState, setTimerState}) => {
   const progress = (elapsed / duration) * 100;
 
   return (
-    <div  class="timer w-full md:w-xl flex justify-center items-center">
+    <div  class="timer flex mx-auto justify-center items-center w-0.6 sm:w-sm">
       <svg viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" stroke="gray" strokeWidth="6" fill="none" />
         <circle
           cx="50"
           cy="50"
           r="45"
-          stroke="green"
+          stroke="#6fb551"
           strokeWidth="6"
           fill="none"
           strokeDasharray="283"
@@ -44,7 +44,7 @@ const Timer = ({ duration, timerState, setTimerState}) => {
           strokeLinecap="round"
         />
       </svg>
-        <div className="absolute flex items-center justify-center text-xl font-bold z-10">
+        <div class="absolute flex items-center justify-center text-9xl font-bold ">
         { timerState !== TIMER_STATES.SET && <>{minutes}:{seconds.toString().padStart(2, '0')}</>}
       </div>
 
