@@ -52,7 +52,7 @@ const Timer = ({ duration, timerState, setTimerState}) => {
     </div>
     <div>
     {timerState === TIMER_STATES.STARTED && <p>Your meditation will be {Math.floor(duration / 60)} minutes</p> }
-    {duration%60 !=0 && <p> and {(duration%60).toString().padStart(2, '0')} seconds</p>}
+    {timerState === TIMER_STATES.STARTED && duration%60 !=0 && <p> and {(duration%60).toString().padStart(2, '0')} seconds</p>}
     </div> 
     </>
   );
