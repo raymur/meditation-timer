@@ -29,6 +29,7 @@ const Timer = ({ duration, timerState, setTimerState}) => {
   const progress = (elapsed / duration) * 100;
 
   return (
+    <>
     <div  class="timer flex mx-auto justify-center items-center w-0.6 sm:w-sm">
       <svg viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" stroke="gray" strokeWidth="6" fill="none" />
@@ -49,6 +50,11 @@ const Timer = ({ duration, timerState, setTimerState}) => {
       </div>
 
     </div>
+    <div>
+    {timerState === TIMER_STATES.STARTED && <p>Your meditation will be {Math.floor(duration / 60)} minutes</p> }
+    {duration%60 !=0 && <p> and {(duration%60).toString().padStart(2, '0')} seconds</p>}
+    </div> 
+    </>
   );
 };
 

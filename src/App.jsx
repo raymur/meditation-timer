@@ -14,7 +14,7 @@ function App() {
   const handleSetTimerState = (newState) => setTimerState(newState) 
   const handleSetDuration = (newDuration) => setDuration(newDuration) 
  
-  const buttonClass="px-4 py-2 m-1 bg-blue-500 text-white rounded-lg"
+  const buttonClass="px-4 py-2 m-1 bg-[#1a1a1a] text-white rounded-lg"
   return (
     <>
         <div className="card">
@@ -32,7 +32,7 @@ function App() {
             setDuration={handleSetDuration}
           
           ></TimerControls>
-          <button class={buttonClass + " drop-shadow-lg"} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Start timer</button></>
+          <button class={buttonClass + " drop-shadow-lg"} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Start meditation</button></>
         }
        {
           timerState === TIMER_STATES.STARTED &&
