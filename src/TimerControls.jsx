@@ -13,7 +13,7 @@ const TimerControls = ({timerState, setTimerState, duration, setDuration}) => {
   ]
 
   if (import.meta.env.MODE === 'development') {
-    buttons.push({ id: "4", label: "3 sec", duration: 3},)
+    buttons.push({ id: "4", label: "1 sec", duration: 1},)
   }
 
   return (

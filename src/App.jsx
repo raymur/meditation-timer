@@ -8,7 +8,7 @@ import Timer from './Timer';
 
 function App() {
   const [timerState, setTimerState] = useState(TIMER_STATES.SET)
-  const [duration, setDuration] = useState(3); 
+  const [duration, setDuration] = useState(60); 
   const [transitioning, setTransitioning] = useState(false);
   useEffect(()=>{setTransitioning(true)},[])
 
@@ -49,7 +49,7 @@ function App() {
         }
        {
           timerState === TIMER_STATES.FINISHED &&
-          <MeditationFinished setTimerState={setTimerState}></MeditationFinished>
+          <MeditationFinished setTimerState={setTimerState} duration={duration}></MeditationFinished>
           }
       </div>
     </>
