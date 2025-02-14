@@ -32,17 +32,17 @@ function App() {
             setDuration={handleSetDuration}
           
           ></TimerControls>
-          <button class={buttonClass + " drop-shadow-lg"} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Start meditation</button></>
+          <button className={buttonClass + " drop-shadow-lg"} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Start meditation</button></>
         }
        {
           timerState === TIMER_STATES.STARTED &&
-          <><button class={buttonClass} onClick={()=> setTimerState(TIMER_STATES.PAUSED)}> Pause timer</button>
-          <button class={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
+          <><button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.PAUSED)}> Pause timer</button>
+          <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
         }
        {
           timerState === TIMER_STATES.PAUSED &&
-          <><button class={buttonClass} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Resume timer</button>
-          <button class={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
+          <><button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Resume timer</button>
+          <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
         }
        {
           timerState === TIMER_STATES.FINISHED &&

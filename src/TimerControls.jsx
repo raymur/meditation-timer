@@ -17,14 +17,14 @@ const TimerControls = ({timerState, setTimerState, duration, setDuration}) => {
   }
 
   return (
-    <div class="flex flex-col items-center space-y-4">
+    <div className="flex flex-col items-center space-y-4">
       <p>Select how long you'll meditate for</p>
-      <div class="flex space-x-2">
+      <div className="flex space-x-2">
       <div className="flex gap-4 p-4">
       {buttons.map((button) => (
         <button
           key={button.id}
-          class={`px-4 py-2 m-2 rounded-lg transition ${
+          className={`px-4 py-2 m-2 rounded-lg transition ${
             selected === button.id
               ? "bg-[#6fb551] text-[#242424]"
               : "bg-[#1a1a1a] "
