@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import TIMER_STATES from './TimerStates'
+import CustomTime from './CustomTime'
 
 
 const TimerControls = ({timerState, setTimerState, duration, setDuration}) => {
@@ -13,7 +14,7 @@ const TimerControls = ({timerState, setTimerState, duration, setDuration}) => {
   ]
 
   if (import.meta.env.MODE === 'development') {
-    buttons.push({ id: "4", label: "1 sec", duration: 1},)
+    buttons.push({ id: "99", label: "1 sec", duration: 1},)
   }
 
   return (
@@ -34,6 +35,7 @@ const TimerControls = ({timerState, setTimerState, duration, setDuration}) => {
           {button.label}
         </button>
       ))}
+      <CustomTime duration={duration} setDuration={setDuration}></CustomTime>
     </div>
 
         {/* <button 

@@ -1,8 +1,8 @@
 import TIMER_STATES from "./TimerStates";
 import { useState, useEffect } from "react";
+import Storage from "./Storage";
 
-const MEDITATIONS = 'mediations';
-const TIMER_INCR = 'timer-increment';
+
 
 const MeditationFinished = ({setTimerState, duration}) =>{
   const [transitioning, setTransitioning] = useState(false);
@@ -10,38 +10,18 @@ const MeditationFinished = ({setTimerState, duration}) =>{
 
   useEffect(()=>{
     setTransitioning(true);
-    setIncr(getTimerIncrement());
-    updateMeditations();
+    setIncr(Storage.getTimerIncrement());
+    Storage.updateMeditations(duration);
   },[])
   const transClass=" transition-opacity duration-2000 ease-in-out "
-  
-  const updateMeditations = () => {
-    const meditations = localStorage.getItem(MEDITATIONS) || "[]";
-    const meditationList = JSON.parse(meditations)
-    const date = (new Date()).toISOString().split('T')[0];
-    meditationList.push({date, duration})
-    localStorage.setItem(MEDITATIONS, JSON.stringify(meditationList))
-  }
-
-  const getMeditations = () => {
-    const meditations = localStorage.getItem(MEDITATIONS) || [];
-    return JSON.parse(meditations);
-  }
-
-  const setTimerIncrement = (increment) => {
-    increment = Math.max(0,increment);
-    localStorage.setItem(TIMER_INCR, increment)
-    return increment;
-  }
 
   const handleSetIncr = (incr) => {
     if (incr) {
-      incr = setTimerIncrement(incr)
+      incr = Storage.setTimerIncrement(incr)
     }
     setIncr(incr);  
   } 
 
-  const getTimerIncrement = () => { return localStorage.getItem(TIMER_INCR)}
 
   return (<div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') }> 
     <h2>Meditate daily! Start small and build your mindfulness and headspace little by little.</h2>

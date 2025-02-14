@@ -14,7 +14,7 @@ function App() {
 
 
   const handleSetTimerState = (newState) => setTimerState(newState) 
-  const handleSetDuration = (newDuration) => setDuration(newDuration) 
+  const handleSetDuration = (newDuration) => {newDuration = Math.max(1,newDuration);setDuration(newDuration)} 
  
   const buttonClass="px-4 py-2 m-1 bg-[#1a1a1a] text-white rounded-lg"
   const transClass="   transition-opacity duration-2000 ease-in-out  "
