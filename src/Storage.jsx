@@ -11,7 +11,7 @@ static updateMeditations = (duration) => {
   }
 
   static getMeditations = () => {
-    const meditations = localStorage.getItem(MEDITATIONS) || [];
+    const meditations = localStorage.getItem(MEDITATIONS) || '[]';
     return JSON.parse(meditations);
   }
 
