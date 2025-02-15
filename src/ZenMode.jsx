@@ -1,18 +1,19 @@
-import { useState } from "react";
-const ZenMode = () => {
-  const [isFullscreen, setIsFullscreen] = useState(false);
+import { useState, useContext } from "react";
 
+const getText = () =>  (!document.fullscreenElement? "Enter" : "Exit") + " zen mode"
+const ZenMode = () => {
   const buttonClass="px-4 py-2 m-1 bg-[#1a1a1a] text-white rounded-3xl text-right"
   const handleFullScreen = () =>{
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen().then(() => setIsFullscreen(true));; 
+      document.documentElement.requestFullscreen()
     } else {
-      document.exitFullscreen().then(() => setIsFullscreen(false));
+      document.exitFullscreen()
     }
   }
+
   const zButton = <button className={buttonClass} onClick={()=>handleFullScreen()}>Z</button>
   return(<>
-    <Tooltip text={(!isFullscreen? "Enter" : "Exit") + " zen mode"} children={zButton} className=''/>
+    <Tooltip  children={zButton} className=''/>
     
   </>)
 }
@@ -36,7 +37,7 @@ const Tooltip = ({ text, children }) => {
           visible ? "opacity-100 scale-100" : "opacity-0 scale-95"
         }`}
       >
-        {text}
+        {getText()}
       </div>
     </div>
   );
