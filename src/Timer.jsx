@@ -38,9 +38,10 @@ const Timer = ({ duration, timerState, setTimerState}) => {
   return (
     <>
     <div  className="timer flex mx-auto justify-center items-center w-0.6 sm:w-sm ">
-      <svg viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="45" stroke="gray" strokeWidth="6" fill="none" />
+      <svg viewBox="0 0 100 100" width='100%' height="100%" xmlns="http://www.w3.org/2000/svg">
+        <circle id='total' cx="50" cy="50" r="45" stroke="gray" strokeWidth="6" fill="none" />
         <circle
+          id='progress'
           className="transition-all duration-500 ease-in-out transform "
           cx="50"
           cy="50"
