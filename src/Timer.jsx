@@ -18,8 +18,8 @@ const Timer = ({ duration, timerState, setTimerState}) => {
 
   useEffect(() => {
     if (elapsed >= duration) {
-      setTimerState(TIMER_STATES.FINISHED); 
-      clearInterval(interval);
+        setTimerState(TIMER_STATES.PENDING_FINISHED); 
+        clearInterval(interval);
     }
   }, [duration, elapsed, setTimerState]);
 
@@ -37,10 +37,11 @@ const Timer = ({ duration, timerState, setTimerState}) => {
 
   return (
     <>
-    <div  className="timer flex mx-auto justify-center items-center w-0.6 sm:w-sm">
+    <div  className="timer flex mx-auto justify-center items-center w-0.6 sm:w-sm ">
       <svg viewBox="0 0 100 100">
         <circle cx="50" cy="50" r="45" stroke="gray" strokeWidth="6" fill="none" />
         <circle
+          className="transition-all duration-500 ease-in-out transform "
           cx="50"
           cy="50"
           r="45"
@@ -52,7 +53,7 @@ const Timer = ({ duration, timerState, setTimerState}) => {
           strokeLinecap="round"
         />
       </svg>
-        <div className="absolute flex items-center justify-center text-9xl font-bold ">
+        <div className="absolute flex items-center justify-center text-9xl font-bold">
         { timerState !== TIMER_STATES.SET && <>{minutes}:{seconds.toString().padStart(2, '0')}</>}
       </div>
 

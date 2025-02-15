@@ -13,7 +13,14 @@ function App() {
   useEffect(()=>{setTransitioning(true)},[])
 
 
-  const handleSetTimerState = (newState) => setTimerState(newState) 
+  const handleSetTimerState = (newState) => {
+    if (newState == TIMER_STATES.PENDING_FINISHED){
+      setTimerState(TIMER_STATES.PENDING_FINISHED)
+      setTimeout(()=>setTimerState(TIMER_STATES.FINISHED),3000)
+    } else {
+      setTimerState(newState)
+    }
+  } 
   const handleSetDuration = (newDuration) => {newDuration = Math.max(1,newDuration);setDuration(newDuration)} 
  
   const buttonClass="px-4 py-2 m-1 bg-[#1a1a1a] text-white rounded-lg"
@@ -24,7 +31,7 @@ function App() {
         {timerState === TIMER_STATES.SET && <h2>Meditate daily! Start small and build your mindfulness and headspace little by little.</h2>}
         {
            timerState !== TIMER_STATES.FINISHED &&
-            <Timer duration={duration} timerState={timerState} setTimerState={setTimerState} />
+            <Timer duration={duration} timerState={timerState} setTimerState={handleSetTimerState} />
         }{
           timerState === TIMER_STATES.SET &&
           <>
