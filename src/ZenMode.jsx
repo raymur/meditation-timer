@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import {isDesktop} from 'react-device-detect';
 
 const getText = () =>  (!document.fullscreenElement? "Enter" : "Exit") + " zen mode"
 const ZenMode = () => {
@@ -12,10 +13,7 @@ const ZenMode = () => {
   }
 
   const zButton = <button className={buttonClass} onClick={()=>handleFullScreen()}>Z</button>
-  return(<>
-    <Tooltip  children={zButton} className=''/>
-    
-  </>)
+  return(isDesktop && <Tooltip  children={zButton} className=''/>)
 }
 
 const Tooltip = ({ text, children }) => {
