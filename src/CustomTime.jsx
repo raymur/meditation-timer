@@ -3,10 +3,18 @@ import Storage from "./Storage";
 
 const DEFAULT_CUSTOM = 7*60 + 30;
 
-const CustomTime = ({duration, setDuration}) =>{
+const CustomTime = ({duration, setDuration, onClick, isCustomSelected, setIsCustomSelected
+}) =>{
   const [isEditing, setIsEditing] = useState(false);
   const [isSelected, setIsSelected] = useState(false);
   const [d, setD] = useState(0);
+
+  // useEffect(()=>{
+  //   if (!selected){
+  //     setIsSelected(false);
+  //     setIsEditing(false)
+  //   }
+  // }, [isCustomSelected])
 
   useEffect(()=>{
     const prevDur = Storage.getLastMeditationDuration()
@@ -41,7 +49,8 @@ const CustomTime = ({duration, setDuration}) =>{
 
   return (<>
   {
-    isEditing ? <input                    
+    isEditing ? 
+    <input                    
     type="number"
     className="w-32 p-2 text-center border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6fb551] focus:border-[#6fb551]"
     value={d}
@@ -50,11 +59,12 @@ const CustomTime = ({duration, setDuration}) =>{
     onKeyDown={handleBlurOrEnter}
     autoFocus ></input> :
 <button 
-    className={ isSelected
+    className={ isCustomSelected
       ? "bg-[#6fb551] text-[#242424]"
       : "bg-[#1a1a1a]"}
-    onClick={()=>{setIsSelected(true); setIsEditing(true)} 
-    
+    onClick={()=>{
+      setIsEditing(true);
+      setIsCustomSelected(true)}
     }>Custom:
     {minutes>0 && ` ${minutes} min`}
     {seconds>0 && ` ${seconds} sec`}</button>

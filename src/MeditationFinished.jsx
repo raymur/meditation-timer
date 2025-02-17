@@ -24,8 +24,7 @@ const MeditationFinished = ({setTimerState, duration}) =>{
 
 
   return (<div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') }> 
-    <h2>Meditate daily! Start small and build your mindfulness and headspace little by little.</h2>
-    <p>Congratulations! You must feel great! </p>
+    <p>Congratulations on taking the time to meditate!</p>
     <p>Come back tomorrow and meditate for 
       <input 
         type='number' 
