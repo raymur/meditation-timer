@@ -9,13 +9,6 @@ const CustomTime = ({duration, setDuration, onClick, isCustomSelected, setIsCust
   const [isSelected, setIsSelected] = useState(false);
   const [d, setD] = useState(0);
 
-  // useEffect(()=>{
-  //   if (!selected){
-  //     setIsSelected(false);
-  //     setIsEditing(false)
-  //   }
-  // }, [isCustomSelected])
-
   useEffect(()=>{
     const prevDur = Storage.getLastMeditationDuration()
     const incr = Storage.getTimerIncrement() || 0

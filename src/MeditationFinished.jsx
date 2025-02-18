@@ -1,25 +1,36 @@
 import TIMER_STATES from "./TimerStates";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import Storage from "./Storage";
+import MeditationLog from "./MeditationLog";
 
 
+const DEFAULT_INCR = 5;
 
 const MeditationFinished = ({setTimerState, duration}) =>{
   const [transitioning, setTransitioning] = useState(false);
-  const [incr, setIncr] = useState(5);
+  const [incr, setIncr] = useState(DEFAULT_INCR);
+  const [logUpdated, setLogUpdated] = useState(false);
+  const hasRun = useRef(false);
 
   useEffect(()=>{
+    if (hasRun.current) return; 
+    hasRun.current = true; 
     setTransitioning(true);
-    setIncr(Storage.getTimerIncrement());
+    let timerIncr = Storage.getTimerIncrement();
+    timerIncr = timerIncr == null ? DEFAULT_INCR : timerIncr
+    setIncr(timerIncr)
+    Storage.setTimerIncrement(timerIncr)
     Storage.updateMeditations(duration);
-  },[])
+    setLogUpdated(true)
+      },[])
+
   const transClass=" transition-opacity duration-2000 ease-in-out "
 
   const handleSetIncr = (incr) => {
+    setIncr(incr);  
     if (incr) {
       incr = Storage.setTimerIncrement(incr)
     }
-    setIncr(incr);  
   } 
 
 
@@ -36,6 +47,8 @@ const MeditationFinished = ({setTimerState, duration}) =>{
       ></input> 
     seconds longer</p>
     <p>or  <button className='bg-[#1a1a1a]' onClick={() => setTimerState(TIMER_STATES.SET)}>meditate again</button></p>
+    <br />
+    <MeditationLog logUpdated={logUpdated}></MeditationLog>
   </div>)
 }
 export default MeditationFinished;

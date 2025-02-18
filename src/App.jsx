@@ -5,6 +5,7 @@ import TIMER_STATES from './TimerStates'
 import MeditationFinished from './MeditationFinished'
 import Timer from './Timer';
 import ZenMode from './ZenMode'
+import MeditationLog from './MeditationLog'
 
 
 function App() {
