@@ -8,6 +8,7 @@ static updateMeditations = (duration) => {
     const date = (new Date()).toISOString().split('T')[0];
     meditationList.push({date, duration})
     localStorage.setItem(MEDITATIONS, JSON.stringify(meditationList))
+    return meditationList;
   }
 
   static getMeditations = () => {

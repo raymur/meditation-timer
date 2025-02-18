@@ -2,12 +2,13 @@ import TIMER_STATES from "./TimerStates";
 import { useState, useEffect, useRef } from "react";
 import Storage from "./Storage";
 import MeditationLog from "./MeditationLog";
-
+import DayStreak from './DayStreak'
 
 const DEFAULT_INCR = 5;
 
 const MeditationFinished = ({setTimerState, duration}) =>{
   const [transitioning, setTransitioning] = useState(false);
+  const [meditations, setMeditations] = useState([]);
   const [incr, setIncr] = useState(DEFAULT_INCR);
   const [logUpdated, setLogUpdated] = useState(false);
   const hasRun = useRef(false);
@@ -20,7 +21,8 @@ const MeditationFinished = ({setTimerState, duration}) =>{
     timerIncr = timerIncr == null ? DEFAULT_INCR : timerIncr
     setIncr(timerIncr)
     Storage.setTimerIncrement(timerIncr)
-    Storage.updateMeditations(duration);
+    const m = Storage.updateMeditations(duration);
+    setMeditations(m)
     setLogUpdated(true)
       },[])
 
@@ -35,6 +37,7 @@ const MeditationFinished = ({setTimerState, duration}) =>{
 
 
   return (<div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') }> 
+    <DayStreak meditations={meditations}></DayStreak>
     <p>Congratulations on taking the time to meditate!</p>
     <p>Come back tomorrow and meditate for 
       <input 
