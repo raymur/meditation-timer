@@ -6,6 +6,7 @@ import MeditationFinished from './MeditationFinished'
 import Timer from './Timer';
 import ZenMode from './ZenMode'
 import MeditationLog from './MeditationLog'
+import PlaySound from './PlaySound'
 
 
 function App() {
@@ -48,7 +49,8 @@ function App() {
         }
        {
          timerState === TIMER_STATES.STARTED &&
-         <><button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.PAUSED)}> Pause timer</button>
+         <>
+         <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.PAUSED)}> Pause timer</button>
           <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
         }
        {
@@ -61,7 +63,8 @@ function App() {
          <MeditationFinished setTimerState={setTimerState} duration={duration}></MeditationFinished>
         }
       </div>
-      <footer className='text-right'><ZenMode></ZenMode></footer>
+      <footer className='text-right'><ZenMode></ZenMode>          <PlaySound timerState={timerState}></PlaySound>
+      </footer>
     </>
   )
 }

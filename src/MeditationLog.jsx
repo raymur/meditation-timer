@@ -37,7 +37,7 @@ const MeditationLog = ({logUpdated}) => {
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
-          <YAxis tickFormatter={toAnal} domain={[0, (max) => max>=600? 60 : 15]} />
+          <YAxis tickFormatter={toAnal} domain={[0, (max) => max>=600? max+60 : max+15]} />
           <Tooltip clasName='text-[#1a1a1a]' 
                 labelFormatter={(e)=>'date'}
                     formatter={(value, name, props) => {
