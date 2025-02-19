@@ -25,14 +25,16 @@ function App() {
     }
   } 
   const handleSetDuration = (newDuration) => {newDuration = Math.max(1,newDuration);setDuration(newDuration)} 
- 
+  const welcomeText = "Meditate daily! Start small and build your mindfulness and headspace little by little."
   const buttonClass="px-4 py-2 m-1 bg-[#1a1a1a] text-white rounded-lg"
   const transClass="   transition-opacity duration-2000 ease-in-out  "
   return (
     <>
-      <div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') + ' m-0 p-0 sm:p-1 w-1.0 sm:w-lg' }>
-        <div className='h-20'>
-          {timerState === TIMER_STATES.SET && <h2 className='py-3'>Meditate daily! Start small and build your mindfulness and headspace little by little.</h2>}
+      <div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') + ' m-0 p-0 sm:p-1 w-xs sm:w-lg ' }>
+        <div className=' m-auto grid place-items-center h-20 w-xs px-4  sm:w-sm'>
+          {
+          timerState === TIMER_STATES.SET && 
+          <h2 className='py-3'>{welcomeText}</h2>}
         </div>
         {
           timerState !== TIMER_STATES.FINISHED &&

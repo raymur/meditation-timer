@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import TIMER_STATES from "./TimerStates";
+import { toAnal } from "./Util";
 
 const Timer = ({ duration, timerState, setTimerState}) => {
   const [elapsed, setElapsed] = useState(0);
@@ -23,9 +24,6 @@ const Timer = ({ duration, timerState, setTimerState}) => {
     }
   }, [duration, elapsed, setTimerState]);
 
-
-  const minutes = Math.floor(elapsed / 60);
-  const seconds = elapsed % 60;
   const progress = (elapsed / duration) * 100;
 
   let durationDiv;
@@ -55,7 +53,7 @@ const Timer = ({ duration, timerState, setTimerState}) => {
         />
       </svg>
         <div className="absolute flex items-center justify-center text-9xl font-bold">
-        { timerState !== TIMER_STATES.SET && <>{minutes}:{seconds.toString().padStart(2, '0')}</>}
+        { timerState !== TIMER_STATES.SET && <>{toAnal(elapsed)}</>}
       </div>
 
     </div>
