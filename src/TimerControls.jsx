@@ -14,19 +14,14 @@ const TimerControls = ({timerState, setTimerState, duration, setDuration}) => {
 
   const handleOnClick = (duration, id) => {setDuration(duration); setSelected(id); setIsCustomSelected(false)}
 
-  if (import.meta.env.MODE === 'development') {
-    buttons.push({ id: "99", label: "1 sec", duration: 1},)
-  }
-
   return (
     <div className="flex flex-col items-center space-y-4">
       <p>Select how long you'll meditate for</p>
-      <div className="flex space-x-2">
-      <div className="flex gap-4 p-4">
+      <div className="flex  flex-wrap items-center justify-center gap-0 sm:gap-4 p-4">
       {buttons.map((button) => (
         <button
           key={button.id}
-          className={`px-4 py-2 m-2 rounded-lg transition ${
+          className={`px-2 sm:px-4 py-2 m-2 sm:m-1 rounded-lg transition ${
             !isCustomSelected && selected === button.id
               ? "bg-[#6fb551] text-[#242424]"
               : "bg-[#1a1a1a] "
@@ -51,7 +46,6 @@ const TimerControls = ({timerState, setTimerState, duration, setDuration}) => {
         >
           Custom time
         </button> */}
-      </div>
       <br />
     </div>
   );

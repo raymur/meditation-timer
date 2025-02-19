@@ -1,5 +1,6 @@
 const MEDITATIONS = 'mediations';
 const TIMER_INCR = 'timer-increment';
+const MUTED = 'muted'
 
 class Storage {
 static updateMeditations = (duration) => {
@@ -33,5 +34,11 @@ static updateMeditations = (duration) => {
 
   static getTimerIncrement = () => { return localStorage.getItem(TIMER_INCR)}
 
+
+  static setMuted = (isMuted) => {
+    localStorage.setItem(MUTED, isMuted.toString())
+  }
+
+  static getMuted = () => { return localStorage.getItem(MUTED) == 'true' ? true : false}
 }
 export default Storage;

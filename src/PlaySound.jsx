@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import TIMER_STATES from "./TimerStates";
+import Storage from "./Storage";
 
 const PlaySound = ({timerState}) => {
   const [buffer, setBuffer] = useState(null)
-  const [soundOn, setSoundOn] = useState(true)
+  const [soundOn, setSoundOn] = useState(!Storage.getMuted())
   const [sources, setSources] = useState([])
   const [context, setContext] = useState( new AudioContext())
 
@@ -36,6 +37,7 @@ const toggleSound = () =>{
   const mute = soundOn;
   setSoundOn(!soundOn)
   handleMute(mute);
+  Storage.setMuted(mute)
 }
 
 const handleMute = (mute) => {

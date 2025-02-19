@@ -30,8 +30,10 @@ function App() {
   const transClass="   transition-opacity duration-2000 ease-in-out  "
   return (
     <>
-      <div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') }>
-        {timerState === TIMER_STATES.SET && <h2>Meditate daily! Start small and build your mindfulness and headspace little by little.</h2>}
+      <div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') + ' m-0 p-0 sm:p-1 w-1.0 sm:w-lg' }>
+        <div className='h-20'>
+          {timerState === TIMER_STATES.SET && <h2 className='py-3'>Meditate daily! Start small and build your mindfulness and headspace little by little.</h2>}
+        </div>
         {
           timerState !== TIMER_STATES.FINISHED &&
             <Timer duration={duration} timerState={timerState} setTimerState={handleSetTimerState} />
@@ -63,7 +65,7 @@ function App() {
          <MeditationFinished setTimerState={setTimerState} duration={duration}></MeditationFinished>
         }
       </div>
-      <footer className='text-right'><ZenMode></ZenMode>          <PlaySound timerState={timerState}></PlaySound>
+      <footer className='text-right m-1 sm:m-1 bottom-0 absolute'><ZenMode></ZenMode>          <PlaySound timerState={timerState}></PlaySound>
       </footer>
     </>
   )
