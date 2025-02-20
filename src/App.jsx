@@ -39,7 +39,7 @@ function App() {
   const transClass="   transition-opacity duration-2000 ease-in-out  "
   return (
     <>
-      <div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') + ' m-0 p-0 sm:p-1 w-xs sm:w-lg ' }>
+      <div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') + ' m-0 p-0 sm:p-1 w-xs sm:w-lg min-h-full relative' }>
         <div className=' m-auto grid place-items-center h-20 w-xs px-4  sm:w-sm'>
           {
           timerState === TIMER_STATES.SET && 
@@ -76,9 +76,10 @@ function App() {
          timerState === TIMER_STATES.FINISHED &&
          <MeditationFinished setTimerState={setTimerState} duration={duration}></MeditationFinished>
         }
-      </div>
-      <footer className='text-right m-1 sm:m-1 bottom-0 absolute'><ZenMode></ZenMode>          <PlaySound timerState={timerState}></PlaySound>
+        <div className='h-12'>{/* hacky solution :( please keep */}</div>
+      <footer className='text-right m-1 sm:m-1 flex absolute bottom-0  '><ZenMode></ZenMode>          <PlaySound timerState={timerState}></PlaySound>
       </footer>
+      </div>
     </>
   )
 }
