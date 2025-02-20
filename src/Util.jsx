@@ -1,12 +1,22 @@
 
 // TIME UTILS
 const toMinSec = (sec) => [Math.floor(sec/60), sec%60]
+
 const toMinSecStr = (sec) => {
   const [m,s] = toMinSec(sec);
   if (!m) return `${s} sec`
   if (!s) return `${m} min`
   return `${m} min ${s} sec`
 }
+
+const toMinuteAndSecondStr = (sec) => {
+  const [m,s] = toMinSec(sec);
+  if (!m) return `${s} second${s>1?'s':''}`
+  if (!s) return `${m} minute${m>1?'s':''}`
+  return `${m} minute${m>1?'s':''} and ${s} second${s>1?'s':''}`
+}
+
+
 const toAnal = (sec) => {
   const [m,s] = toMinSec(sec);
   return `${m}:${('0'+s).slice(-2)}`
@@ -46,4 +56,4 @@ const isToday = (dateString) => {
 }
 
 
-export {toMinSec, toMinSecStr, toSec, toAnal, getDayStreak, getPreviousDay};
+export {toMinSec, toMinSecStr, toSec, toAnal, getDayStreak, getPreviousDay, toMinuteAndSecondStr };

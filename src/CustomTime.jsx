@@ -48,7 +48,6 @@ function TimePicker({setDuration, isCustomSelected, setIsCustomSelected}) {
 
   const handleOnBlur = (e) =>{
     if (e.key === 'Enter' || (e.type === "blur" && !e.currentTarget.contains(e.relatedTarget) )){
-      console.log(e.relatedTarget)
       if (sec === '') {
         setSec('00')
       }if (sec < 10 && sec.length == 1) {
@@ -71,7 +70,7 @@ function TimePicker({setDuration, isCustomSelected, setIsCustomSelected}) {
           className="noFocus"
 
       autoFocus type='number' value={min} maxLength='2' onChange={handleMinuteChange} style={{border: 'none', background: 'none', outline: 'none', textAlign: 'start', width: '100%', height: '100%', direction: 'rtl'}} placeholder='0'></input>
-      <div  tabindex="-1" style={{position: 'relative', color: 'white', bottom: '0.15em', display: 'inline', padding: '0.25em', cursor: 'text', border: 'none',  background: 'transparent'}}>:</div>
+      <div  tabIndex="-1" style={{position: 'relative', color: 'white', bottom: '0.15em', display: 'inline', padding: '0.25em', cursor: 'text', border: 'none',  background: 'transparent'}}>:</div>
       <input  
                 className="noFocus"
                  type='number' value={sec} maxLength='2' onChange={handleSecondChange} style={{border: 'none', background: 'none', outline: 'none', textAlign: 'end', width: '100%', height: '100%',direction: 'rtl'}} placeholder='00'></input>

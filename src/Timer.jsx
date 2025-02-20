@@ -22,7 +22,7 @@ const Timer = ({ duration, timerState, setTimerState}) => {
         setTimerState(TIMER_STATES.PENDING_FINISHED); 
         clearInterval(interval);
     }
-  }, [duration, elapsed, setTimerState]);
+  }, [duration, elapsed]);
 
   const progress = (elapsed / duration) * 100;
 

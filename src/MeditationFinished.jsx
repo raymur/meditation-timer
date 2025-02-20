@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import Storage from "./Storage";
 import MeditationLog from "./MeditationLog";
 import DayStreak from './DayStreak'
+import { toMinuteAndSecondStr  } from "./Util";
 
 const DEFAULT_INCR = 5;
 
@@ -38,7 +39,7 @@ const MeditationFinished = ({setTimerState, duration}) =>{
 
   return (<div className={"card"+ transClass + (!transitioning ? ' opacity-0 ' : ' opactiy-100 ') }> 
     <DayStreak meditations={meditations}></DayStreak>
-    <p>Congratulations on taking the time to meditate!</p>
+    <p>Congratulations on taking the time to meditate for {toMinuteAndSecondStr(duration)}!</p>
     <p>Come back tomorrow and meditate for 
       <input 
         type='number' 

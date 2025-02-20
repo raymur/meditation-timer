@@ -3,7 +3,7 @@ import TIMER_STATES from './TimerStates'
 import CustomTime from './CustomTime'
 
 
-const TimerControls = ({timerState, setTimerState, duration, setDuration}) => {
+const TimerControls = ({duration, setDuration}) => {
   let buttons = [
     { id: "1", label: "1 min", duration: 60},
     { id: "2", label: "5 min", duration: 300},

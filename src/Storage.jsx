@@ -19,10 +19,8 @@ static updateMeditations = (duration) => {
 
   static getLastMeditationDuration = () => {
     const mediations = this.getMeditations()
-    console.log(mediations)
     if (!mediations) {return null;}
     const mostRecent = mediations.reduce((max, e) => max.date < e.date ? e : max, {date: ''})
-    console.log(mostRecent)
     return mostRecent.duration
   }
 

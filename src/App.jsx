@@ -13,17 +13,26 @@ function App() {
   const [timerState, setTimerState] = useState(TIMER_STATES.SET)
   const [duration, setDuration] = useState(60); 
   const [transitioning, setTransitioning] = useState(false);
+  const [pendingFinishedTimeoutID, setPendingFinishedTimeoutID] = useState();
   useEffect(()=>{setTransitioning(true)},[])
 
 
   const handleSetTimerState = (newState) => {
     if (newState == TIMER_STATES.PENDING_FINISHED){
       setTimerState(TIMER_STATES.PENDING_FINISHED)
-      setTimeout(()=>setTimerState(TIMER_STATES.FINISHED),3000)
+      const timeoutID = setTimeout(()=>setTimerState(TIMER_STATES.FINISHED),10000)
+      setPendingFinishedTimeoutID(timeoutID)
     } else {
       setTimerState(newState)
     }
   } 
+
+
+  const moveToFinished = () => {
+    clearTimeout(pendingFinishedTimeoutID)
+    setTimerState(TIMER_STATES.FINISHED)
+  }
+
   const handleSetDuration = (newDuration) => {newDuration = Math.max(1,newDuration);setDuration(newDuration)} 
   const welcomeText = "Meditate daily! Start small and build your mindfulness and headspace little by little."
   const buttonClass="px-4 py-2 m-1 bg-[#1a1a1a] text-white rounded-lg"
@@ -43,11 +52,8 @@ function App() {
           timerState === TIMER_STATES.SET &&
           <>
           <TimerControls 
-            timerState={timerState} 
-            setTimerState={handleSetTimerState} 
             duration={duration}
             setDuration={handleSetDuration}
-            
             ></TimerControls>
           <button className={buttonClass + " drop-shadow-lg" + "   transition duration-2000 ease-in-out  "} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Start meditation</button></>
         }
@@ -62,7 +68,11 @@ function App() {
          <><button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Resume timer</button>
           <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
         }
-       {
+      {
+         timerState === TIMER_STATES.PENDING_FINISHED &&
+         <button className={buttonClass} onClick={moveToFinished}> Go to meditation results</button>
+      }
+      {
          timerState === TIMER_STATES.FINISHED &&
          <MeditationFinished setTimerState={setTimerState} duration={duration}></MeditationFinished>
         }
