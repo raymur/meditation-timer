@@ -58,6 +58,7 @@ const Timer = ({ duration, timerState, setTimerState}) => {
         <div className="absolute flex items-center justify-center text-lg w-xs font-normal flex-col">
         <p>Your meditation is about to begin.</p>
         <p>Please take a few moments to get comfortable and begin your practice.</p>
+        <p className="text-6xl">😊</p>
         </div>
         }
       </div>

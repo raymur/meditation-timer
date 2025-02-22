@@ -9,7 +9,10 @@ const DayStreak = ({meditations})=>{
   },[meditations])
 
   return(<>
-    <p>YOU HAVE A {streak} DAY STREAK!!</p>
+  <div className='bg-[#1a1a1a] border-[#6fb551] py-8 text-6xl rounded-xl border-solid border-5 font-bold m-2 p-2 ' style={{fontFamily: "Arial Rounded MT Bold"}}> 
+    <div className="rounded-full bg-[#1a1a1a] inline-block py-8 px-11 min-w-[120px] min-h-[120px] mr-2 border-[#6fb551] border-solid border-10">{streak}</div>
+    <div class="inline-block" >day streak!</div>
+  </div>
   </>)
 }
 export default DayStreak;

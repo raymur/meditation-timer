@@ -17,7 +17,7 @@ const toMinuteAndSecondStr = (sec) => {
 }
 
 
-const toAnal = (sec) => {
+const toAnal/*og*/ = (sec) => {
   const [m,s] = toMinSec(sec);
   return `${m}:${('0'+s).slice(-2)}`
 }
@@ -38,13 +38,14 @@ const getDayStreak = (dates) => {
   for (let i = 1; i < dates.length; i++) {
     if (getPreviousDay(last) == dates[i]){
       count ++;
+      last = dates[i];
     }else {
       break;
     }
   }
   return count
-  
 }
+
 const getPreviousDay = (dateString) => {
   const date = new Date(dateString);
   date.setDate(date.getDate() - 1);
