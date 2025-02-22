@@ -34,6 +34,7 @@ const MeditationLog = ({logUpdated}) => {
             left: 0,
             bottom: 0,
           }}
+          className='right-0.05'
         >
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />

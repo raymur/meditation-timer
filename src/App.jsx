@@ -7,6 +7,8 @@ import Timer from './Timer';
 import ZenMode from './ZenMode'
 import MeditationLog from './MeditationLog'
 import PlaySound from './PlaySound'
+import HowTo from './HowTo'
+import About from './About'
 
 
 function App() {
@@ -76,8 +78,12 @@ function App() {
          timerState === TIMER_STATES.FINISHED &&
          <MeditationFinished setTimerState={setTimerState} duration={duration}></MeditationFinished>
         }
-        <div className='h-12'>{/* hacky solution :( please keep */}</div>
-      <footer className='text-right m-1 sm:m-1 flex absolute bottom-0  '><ZenMode></ZenMode>          <PlaySound timerState={timerState}></PlaySound>
+        <div className='h-20'>{/* hacky solution :( please keep */}</div>
+      <footer className='text-right m-1 sm:m-1 flex absolute bottom-0  '>
+        <ZenMode></ZenMode>
+        <PlaySound timerState={timerState}></PlaySound>
+        <HowTo></HowTo>
+        <About></About>
       </footer>
       </div>
     </>
