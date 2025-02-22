@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import './App.css'
 import TimerControls from './TimerControls'
 import TIMER_STATES from './TimerStates'  
@@ -9,6 +9,9 @@ import MeditationLog from './MeditationLog'
 import PlaySound from './PlaySound'
 import HowTo from './HowTo'
 import About from './About'
+import NoSleep from 'nosleep.js';
+
+var noSleep = new NoSleep();
 
 
 function App() {
@@ -16,7 +19,17 @@ function App() {
   const [duration, setDuration] = useState(60); 
   const [transitioning, setTransitioning] = useState(false);
   const [pendingFinishedTimeoutID, setPendingFinishedTimeoutID] = useState();
+  const startRef = useRef(null);
+  const resumeRef = useRef(null);
+
+
   useEffect(()=>{setTransitioning(true)},[])
+
+  useEffect(()=>{
+    if (timerState != TIMER_STATES.STARTED){
+      noSleep.disable();
+    }
+  }, [timerState])
 
 
   const handleSetTimerState = (newState) => {
@@ -57,7 +70,7 @@ function App() {
             duration={duration}
             setDuration={handleSetDuration}
             ></TimerControls>
-          <button className={buttonClass + " drop-shadow-lg" + "   transition duration-2000 ease-in-out  "} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Start meditation</button></>
+          <button startRef className={buttonClass + " drop-shadow-lg" + "   transition duration-2000 ease-in-out  "} onClick={()=> {setTimerState(TIMER_STATES.STARTED); noSleep.enable();}}> Start meditation</button></>
         }
        {
          timerState === TIMER_STATES.STARTED &&
@@ -67,7 +80,7 @@ function App() {
         }
        {
          timerState === TIMER_STATES.PAUSED &&
-         <><button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.STARTED)}> Resume timer</button>
+         <><button resumeRef className={buttonClass} onClick={()=> {setTimerState(TIMER_STATES.STARTED); noSleep.enable();}}> Resume timer</button>
           <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
         }
       {
