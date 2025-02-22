@@ -18,9 +18,7 @@ function App() {
   const [timerState, setTimerState] = useState(TIMER_STATES.SET)
   const [duration, setDuration] = useState(60); 
   const [transitioning, setTransitioning] = useState(false);
-  const [pendingFinishedTimeoutID, setPendingFinishedTimeoutID] = useState();
-  const startRef = useRef(null);
-  const resumeRef = useRef(null);
+  const [pendingTimeoutID, setPendingTimeoutID] = useState();
 
 
   useEffect(()=>{setTransitioning(true)},[])
@@ -36,15 +34,23 @@ function App() {
     if (newState == TIMER_STATES.PENDING_FINISHED){
       setTimerState(TIMER_STATES.PENDING_FINISHED)
       const timeoutID = setTimeout(()=>setTimerState(TIMER_STATES.FINISHED),10000)
-      setPendingFinishedTimeoutID(timeoutID)
+      setPendingTimeoutID(timeoutID)
+    } else if (newState == TIMER_STATES.PENDING_STARTED){
+      setTimerState(TIMER_STATES.PENDING_STARTED)
+      const timeoutID = setTimeout(()=>setTimerState(TIMER_STATES.STARTED),10000)
+      setPendingTimeoutID(timeoutID)
     } else {
       setTimerState(newState)
     }
   } 
 
+  const moveToStarted = () => {
+    clearTimeout(pendingTimeoutID)
+    setTimerState(TIMER_STATES.STARTED)
+  }
 
   const moveToFinished = () => {
-    clearTimeout(pendingFinishedTimeoutID)
+    clearTimeout(pendingTimeoutID)
     setTimerState(TIMER_STATES.FINISHED)
   }
 
@@ -70,8 +76,12 @@ function App() {
             duration={duration}
             setDuration={handleSetDuration}
             ></TimerControls>
-          <button startRef className={buttonClass + " drop-shadow-lg" + "   transition duration-2000 ease-in-out  "} onClick={()=> {setTimerState(TIMER_STATES.STARTED); noSleep.enable();}}> Start meditation</button></>
+          <button className={buttonClass + " drop-shadow-lg" + "   transition duration-2000 ease-in-out  "} onClick={()=> {handleSetTimerState(TIMER_STATES.PENDING_STARTED); noSleep.enable();}}> Start meditation</button></>
         }
+        {
+         timerState === TIMER_STATES.PENDING_STARTED &&
+         <button className={buttonClass} onClick={moveToStarted}> Skip delay</button>
+      }
        {
          timerState === TIMER_STATES.STARTED &&
          <>
@@ -80,7 +90,7 @@ function App() {
         }
        {
          timerState === TIMER_STATES.PAUSED &&
-         <><button resumeRef className={buttonClass} onClick={()=> {setTimerState(TIMER_STATES.STARTED); noSleep.enable();}}> Resume timer</button>
+         <><button className={buttonClass} onClick={()=> {setTimerState(TIMER_STATES.STARTED); noSleep.enable();}}> Resume timer</button>
           <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
         }
       {
@@ -95,8 +105,9 @@ function App() {
       <footer className='text-right m-1 sm:m-1 flex absolute bottom-0  '>
         <ZenMode></ZenMode>
         <PlaySound timerState={timerState}></PlaySound>
-        <HowTo></HowTo>
-        <About></About>
+        { (timerState != TIMER_STATES.STARTED  && timerState != TIMER_STATES.PENDING_FINISHED ) &&  
+        <><HowTo></HowTo>
+        <About></About></> }
       </footer>
       </div>
     </>

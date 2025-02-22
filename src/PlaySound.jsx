@@ -10,7 +10,7 @@ const PlaySound = ({timerState}) => {
 
   useEffect(()=>{ loadDogSound()},[])
   useEffect(()=>{
-    if (timerState==TIMER_STATES.STARTED || timerState == TIMER_STATES.PENDING_FINISHED){
+    if (timerState==TIMER_STATES.PENDING_STARTED || timerState == TIMER_STATES.PENDING_FINISHED){
         playNTimes(3)
     }
   }, [timerState])

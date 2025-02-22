@@ -69,11 +69,11 @@ function TimePicker({setDuration, isCustomSelected, setIsCustomSelected}) {
       <input 
           className="noFocus"
 
-      autoFocus type='number' value={min} maxLength='2' onChange={handleMinuteChange} style={{border: 'none', background: 'none', outline: 'none', textAlign: 'start', width: '100%', height: '100%'}} placeholder='0'></input>
+      autoFocus type='number' value={min} maxLength='2' onChange={handleMinuteChange} style={{border: 'none', background: 'none', outline: 'none', textAlign: 'end', width: '100%', height: '100%'}} placeholder='0'></input>
       <div  tabIndex="-1" style={{position: 'relative', color: 'white', bottom: '0.15em', display: 'inline', padding: '0.25em', cursor: 'text', border: 'none',  background: 'transparent'}}>:</div>
       <input  
                 className="noFocus"
-                 type='number' value={sec} maxLength='2' onChange={handleSecondChange} style={{border: 'none', background: 'none', outline: 'none', textAlign: 'end', width: '100%', height: '100%'}} placeholder='00'></input>
+                 type='number' value={sec} maxLength='2' onChange={handleSecondChange} style={{border: 'none', background: 'none', outline: 'none', textAlign: 'start', width: '100%', height: '100%'}} placeholder='00'></input>
       </div>
 
       :

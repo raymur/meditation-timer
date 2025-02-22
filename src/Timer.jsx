@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import TIMER_STATES from "./TimerStates";
-import { toAnal } from "./Util";
+import { toAnal, toMinuteAndSecondStr } from "./Util";
 
 const Timer = ({ duration, timerState, setTimerState}) => {
   const [elapsed, setElapsed] = useState(0);
@@ -30,7 +30,7 @@ const Timer = ({ duration, timerState, setTimerState}) => {
   if (timerState === TIMER_STATES.STARTED && duration > 0) {
     const durationMinutes = Math.floor(duration / 60)
     const durationSeconds = duration%60
-    const innerText = <div>Your meditation will be {durationMinutes} minute{durationMinutes>1 && 's'} {durationSeconds && ' and ' + durationSeconds}</div>
+    const durationDiv = <div>Your meditation will be {durationMinutes} minute{durationMinutes>1 && 's'} {durationSeconds && ' and ' + durationSeconds}</div>
   } 
 
   return (
@@ -53,12 +53,18 @@ const Timer = ({ duration, timerState, setTimerState}) => {
         />
       </svg>
         <div className="absolute flex items-center justify-center text-9xl font-bold">
-        { timerState !== TIMER_STATES.SET && <>{toAnal(elapsed)}</>}
+        { (timerState != TIMER_STATES.SET && timerState != TIMER_STATES.PENDING_STARTED) && <>{toAnal(elapsed)}</>}
+        { timerState == TIMER_STATES.PENDING_STARTED && 
+        <div className="absolute flex items-center justify-center text-lg w-xs font-normal flex-col">
+        <p>Your meditation is about to begin.</p>
+        <p>Please take a few moments to get comfortable and begin your practice.</p>
+        </div>
+        }
       </div>
 
     </div>
     <div>
-    {durationDiv}
+    { timerState in [TIMER_STATES.STARTED, TIMER_STATES.PENDING_STARTED] && duration > 0 && "Your meditation will be " + toMinuteAndSecondStr(duration)}
     </div> 
     </>
   );
