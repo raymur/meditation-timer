@@ -9,7 +9,7 @@ import PlaySound from "./PlaySound";
 import HowTo from "./HowTo";
 import About from "./About";
 import NoSleep from "nosleep.js";
-
+import GTag from "./GTag";
 var noSleep = new NoSleep();
 
 function App() {
@@ -69,6 +69,7 @@ function App() {
   const transClass = "   transition-opacity duration-2000 ease-in-out  ";
   return (
     <>
+      <GTag />
       <div
         className={
           "card" +

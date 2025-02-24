@@ -5,6 +5,7 @@ import MeditationLog from "./MeditationLog";
 import DayStreak from "./DayStreak";
 import { toMinuteAndSecondStr } from "./Util";
 import MeditationChart from "./MeditationChart";
+import { trackMeditation } from "./GTag";
 
 const DEFAULT_INCR = 5;
 
@@ -27,6 +28,7 @@ const MeditationFinished = ({ setTimerState, duration }) => {
     const m = Storage.addNewMeditation(duration, note);
     setMeditations(m);
     setLogUpdated(!logUpdated);
+    trackMeditation(duration);
   }, []);
 
   const transClass = " transition-opacity duration-2000 ease-in-out ";
