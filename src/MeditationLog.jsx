@@ -35,10 +35,7 @@ const MeditationLog = ({logUpdated}) => {
                     formatter={(value, name, props) => {
                       if (props.dataKey == "duration") {
                         return toMinSecStr(value);
-                      } else if (props.dataKey == "date") {
-                        return "date";
-                      }
-                    }}
+                      } }}
                     itemStyle={{ color: "#1a1a1a" }}
                     labelStyle={{color: 'black', textAlign: 'left'}}
                     // labelStyle={{ display: "none" }}
