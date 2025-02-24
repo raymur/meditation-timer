@@ -13,6 +13,7 @@ const MeditationFinished = ({ setTimerState, duration }) => {
   const [meditations, setMeditations] = useState([]);
   const [incr, setIncr] = useState(DEFAULT_INCR);
   const [logUpdated, setLogUpdated] = useState(false);
+  const [note, setNote] = useState("");
   const hasRun = useRef(false);
 
   useEffect(() => {
@@ -23,9 +24,9 @@ const MeditationFinished = ({ setTimerState, duration }) => {
     timerIncr = timerIncr == null ? DEFAULT_INCR : timerIncr;
     setIncr(timerIncr);
     Storage.setTimerIncrement(timerIncr);
-    const m = Storage.addNewMeditation(duration);
+    const m = Storage.addNewMeditation(duration, note);
     setMeditations(m);
-    setLogUpdated(true);
+    setLogUpdated(!logUpdated);
   }, []);
 
   const transClass = " transition-opacity duration-2000 ease-in-out ";
@@ -34,6 +35,18 @@ const MeditationFinished = ({ setTimerState, duration }) => {
     setIncr(incr);
     if (incr) {
       incr = Storage.setTimerIncrement(incr);
+    }
+  };
+
+  const handleNoteChange = (e) => {
+    const newNote = e.target.value;
+    setNote(newNote);
+    const updatedMeditations = [...meditations];
+    if (updatedMeditations.length > 0) {
+      updatedMeditations[updatedMeditations.length - 1].note = newNote;
+      Storage.updatedMeditations(updatedMeditations);
+      setMeditations(updatedMeditations);
+      setLogUpdated(!logUpdated);
     }
   };
 
@@ -48,6 +61,14 @@ const MeditationFinished = ({ setTimerState, duration }) => {
         Congratulations on taking the time to meditate for{" "}
         {toMinuteAndSecondStr(duration)}!
       </p>
+      <div className="mb-4">
+        <textarea
+          placeholder="How was your meditation? (optional)"
+          className="w-full p-2 text-center border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6fb551] focus:border-[#6fb551] bg-[#1a1a1a] min-h-[100px]"
+          value={note}
+          onChange={handleNoteChange}
+        ></textarea>
+      </div>
       <p>
         Come back tomorrow and meditate for
         <input

@@ -6,10 +6,10 @@ const MeditationChart = ({ logUpdated, setLogUpdated }) => {
   const [meditations, setMeditations] = useState([]);
 
   useEffect(() => {
-    const meditations = Storage.getMeditations().sort(
+    const newMeditations = Storage.getMeditations().sort(
       (a, b) => a.date + a.time < b.date + b.time,
     );
-    setMeditations(meditations);
+    setMeditations(newMeditations);
   }, [logUpdated]);
 
   const deleteMeditation = (med) => {
@@ -22,21 +22,25 @@ const MeditationChart = ({ logUpdated, setLogUpdated }) => {
   return (
     <div className="p-6 max-w-3xl mx-auto">
       <h2 className="text-xl mb-4">Meditation Records</h2>
-      <div className="grid grid-cols-4 font-bold p-2">
+      <div className="grid grid-cols-5 font-bold p-2">
         <div>Date</div>
         <div>Time</div>
         <div>Duration</div>
+        <div>Notes</div>
         <div>Actions</div>
       </div>
       {meditations.length > 0 ? (
         meditations.map((meditation) => (
           <div
             key={Math.random()}
-            className="grid grid-cols-4 border-t p-2 items-center"
+            className="grid grid-cols-5 border-t p-2 items-center"
           >
             <div>{meditation.date}</div>
             <div>{meditation.time}</div>
             <div>{toMinSecStr(meditation.duration)}</div>
+            <div className="truncate" title={meditation.note || "No notes"}>
+              {meditation.note || "-"}
+            </div>
             <div>
               <button
                 className="bg-red-600 p-1 hover:border-white"

@@ -5,11 +5,11 @@ const TIMER_INCR = "timer-increment";
 const MUTED = "muted";
 
 class Storage {
-  static addNewMeditation = (duration) => {
+  static addNewMeditation = (duration, note = "") => {
     const meditations = localStorage.getItem(MEDITATIONS) || "[]";
     const meditationList = JSON.parse(meditations);
     let [date, time] = getDateAndTime();
-    meditationList.push({ date, time, duration });
+    meditationList.push({ date, time, duration, note });
     localStorage.setItem(MEDITATIONS, JSON.stringify(meditationList));
     return meditationList;
   };
