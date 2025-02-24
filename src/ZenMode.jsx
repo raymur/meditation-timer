@@ -1,28 +1,32 @@
 import { useState, useContext } from "react";
-import {isDesktop} from 'react-device-detect';
+import { isDesktop } from "react-device-detect";
 
-const getText = () =>  (!document.fullscreenElement? "Enter" : "Exit") + " zen mode"
+const getText = () =>
+  (!document.fullscreenElement ? "Enter" : "Exit") + " zen mode";
 const ZenMode = () => {
-  const buttonClass="px-4 py-2 m-1 bg-[#1a1a1a] text-white rounded-3xl text-right"
-  const handleFullScreen = () =>{
+  const buttonClass =
+    "px-4 py-2 m-1 bg-[#1a1a1a] text-white rounded-3xl text-right";
+  const handleFullScreen = () => {
     if (!document.fullscreenElement) {
-      document.documentElement.requestFullscreen()
+      document.documentElement.requestFullscreen();
     } else {
-      document.exitFullscreen()
+      document.exitFullscreen();
     }
-  }
+  };
 
-  const zButton = <button className={buttonClass} onClick={()=>handleFullScreen()}>Z</button>
-  return(isDesktop && <Tooltip  children={zButton} className=''/>)
-}
+  const zButton = (
+    <button className={buttonClass} onClick={() => handleFullScreen()}>
+      Z
+    </button>
+  );
+  return isDesktop && <Tooltip children={zButton} className="" />;
+};
 
 const Tooltip = ({ text, children }) => {
   const [visible, setVisible] = useState(false);
 
   return (
-    <div 
-      className="relative flex "
-    >
+    <div className="relative flex ">
       <div
         onMouseEnter={() => setVisible(true)}
         onMouseLeave={() => setVisible(false)}
@@ -40,6 +44,5 @@ const Tooltip = ({ text, children }) => {
     </div>
   );
 };
-
 
 export default ZenMode;

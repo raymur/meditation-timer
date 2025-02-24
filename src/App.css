@@ -1,9 +1,8 @@
-
 #root {
   max-width: 1280px;
   margin: 0 auto;
   text-align: center;
-  font-family: Garamond bold ;
+  font-family: Garamond bold;
 }
 
 .logo {
@@ -42,14 +41,11 @@
   color: #888;
 }
 
-
-
 /* .timer {
   display: block;
   margin-left: auto;
   margin-right: auto;
 } */
-
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -119,8 +115,6 @@ button:focus-visible {
   }
 }
 
-
-
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -128,15 +122,11 @@ input::-webkit-inner-spin-button {
 }
 
 /* Firefox */
-input[type=number] {
+input[type="number"] {
   -moz-appearance: textfield;
 }
-
-
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import "tailwindcss";
-
-
