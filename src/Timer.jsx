@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import TIMER_STATES from "./TimerStates";
 import { toAnal, toMinuteAndSecondStr } from "./Util";
 
-const Timer = ({ duration, timerState, setTimerState}) => {
+const Timer = ({ duration, timerState, setTimerState, setParentElapsed}) => {
   const [elapsed, setElapsed] = useState(0);
 
   var interval;
@@ -13,11 +13,10 @@ const Timer = ({ duration, timerState, setTimerState}) => {
       }, 1000);
       return () => clearInterval(interval);
     }if (timerState == TIMER_STATES.SET) { setElapsed(0)} 
-    if (timerState === TIMER_STATES.FINISHED) {}
   }, [duration, timerState]);
 
-
   useEffect(() => {
+    setParentElapsed(elapsed)
     if (elapsed >= duration) {
         setTimerState(TIMER_STATES.PENDING_FINISHED); 
         clearInterval(interval);
@@ -25,14 +24,6 @@ const Timer = ({ duration, timerState, setTimerState}) => {
   }, [duration, elapsed]);
 
   const progress = (elapsed / duration) * 100;
-
-  let durationDiv;
-  if (timerState === TIMER_STATES.STARTED && duration > 0) {
-    const durationMinutes = Math.floor(duration / 60)
-    const durationSeconds = duration%60
-    const durationDiv = <div>Your meditation will be {durationMinutes} minute{durationMinutes>1 && 's'} {durationSeconds && ' and ' + durationSeconds}</div>
-  } 
-
   return (
     <>
     <div  className="timer flex mx-auto justify-center items-center  ">

@@ -6,7 +6,7 @@ import Storage from './Storage';
 const MeditationLog = ({logUpdated}) => {
   const [data, setData] = useState([])
   useEffect(()=>{
-    const meditations = Storage.getMeditations().sort(((a,b)=>a.date>b.date))
+    const meditations = Storage.getMeditations().sort(((a,b)=>(a.date+a.time>b.date+b.time)))
     if (meditations.length==1) {
       meditations.push({date: '\u00A0', duration: meditations[0].duration})
     }
@@ -30,8 +30,8 @@ const MeditationLog = ({logUpdated}) => {
           <CartesianGrid strokeDasharray="3 3" />
           <XAxis dataKey="date" />
           <YAxis tickFormatter={toAnal} domain={[0, (max) => max>=600? max+60 : max+15]} />
-          <Tooltip clasName='text-[#1a1a1a]' 
-                labelFormatter={(e)=>'date'}
+          <Tooltip className='text-[#1a1a1a]' 
+                labelFormatter={(e)=>e}
                     formatter={(value, name, props) => {
                       if (props.dataKey == "duration") {
                         return toMinSecStr(value);
@@ -40,6 +40,7 @@ const MeditationLog = ({logUpdated}) => {
                       }
                     }}
                     itemStyle={{ color: "#1a1a1a" }}
+                    labelStyle={{color: 'black', textAlign: 'left'}}
                     // labelStyle={{ display: "none" }}
                     contentStyle={{
                       borderRadius: "25px",

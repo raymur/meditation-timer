@@ -16,6 +16,7 @@ var noSleep = new NoSleep();
 function App() {
   const [timerState, setTimerState] = useState(TIMER_STATES.SET)
   const [duration, setDuration] = useState(60); 
+  const [elapsed, setElapsed] = useState(0)
   const [transitioning, setTransitioning] = useState(false);
   const [pendingTimeoutID, setPendingTimeoutID] = useState();
 
@@ -67,7 +68,7 @@ function App() {
         </div>
         {
           timerState !== TIMER_STATES.FINISHED &&
-            <Timer duration={duration} timerState={timerState} setTimerState={handleSetTimerState} />
+            <Timer duration={duration} timerState={timerState} setTimerState={handleSetTimerState} setParentElapsed={setElapsed} />
         }{
           timerState === TIMER_STATES.SET &&
           <>
@@ -83,14 +84,21 @@ function App() {
       }
        {
          timerState === TIMER_STATES.STARTED &&
-         <>
          <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.PAUSED)}> Pause timer</button>
-          <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
         }
-       {
-         timerState === TIMER_STATES.PAUSED &&
-         <><button className={buttonClass} onClick={()=> {setTimerState(TIMER_STATES.STARTED); noSleep.enable();}}> Resume timer</button>
-          <button className={buttonClass} onClick={()=> setTimerState(TIMER_STATES.SET)}> Stop timer</button></>
+        {
+          timerState === TIMER_STATES.PAUSED &&
+          <>
+
+          <button className={buttonClass} onClick={()=> {setTimerState(TIMER_STATES.STARTED); noSleep.enable();}}> Resume timer</button>
+
+<div className=' mt-4'>
+          <button className={buttonClass + ' bg-red-600 hover:border-red-600'}
+onClick={()=> setTimerState(TIMER_STATES.SET)}
+>Discard meditation</button>    
+<button className={buttonClass + ' bg-[#6fb551]'}
+onClick={()=> setTimerState(TIMER_STATES.FINISHED)}
+>Complete meditation</button>   </div> </>
         }
       {
          timerState === TIMER_STATES.PENDING_FINISHED &&
@@ -98,7 +106,7 @@ function App() {
       }
       {
          timerState === TIMER_STATES.FINISHED &&
-         <MeditationFinished setTimerState={setTimerState} duration={duration}></MeditationFinished>
+         <MeditationFinished setTimerState={setTimerState} duration={elapsed}></MeditationFinished>
         }
         <div className='h-20'>{/* hacky solution :( please keep */}</div>
       <footer className='text-right m-1 sm:m-1 flex absolute bottom-0  '>

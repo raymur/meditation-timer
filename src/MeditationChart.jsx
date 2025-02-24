@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import Storage from './Storage'
-import { toAnal } from "./Util";
+import { toAnal, toMinSecStr } from "./Util";
 
 const MeditationChart = ({logUpdated, setLogUpdated}) =>{
   const [meditations, setMeditations] = useState([]);
 
   useEffect(()=>{
-    const meditations = Storage.getMeditations().sort(((a,b)=>a.date>b.date))
+    const meditations = Storage.getMeditations().sort(((a,b)=>( a.date+a.time<b.date+b.time)))
     setMeditations(meditations)
   }, [logUpdated])
 
@@ -32,9 +32,9 @@ const MeditationChart = ({logUpdated, setLogUpdated}) =>{
           <div key={Math.random()} className="grid grid-cols-4 border-t p-2 items-center">
             <div>{meditation.date}</div>
             <div>{meditation.time}</div>
-            <div>{toAnal(meditation.duration)}</div>
+            <div>{toMinSecStr(meditation.duration)}</div>
             <div>
-              <button enabled="false" onClick={() => deleteMeditation(meditation)}>
+              <button className="bg-red-600 p-1 hover:border-white" onClick={() => deleteMeditation(meditation)}>
                 Delete
               </button>
             </div>

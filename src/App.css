@@ -132,8 +132,11 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import "tailwindcss";
+
 
