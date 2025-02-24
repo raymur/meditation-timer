@@ -52,9 +52,20 @@ const getPreviousDay = (dateString) => {
   return date.toISOString().split("T")[0];
 }
 const isToday = (dateString) => {
-  const today = (new Date()).toISOString().split("T")[0];
+  const today = getDateAndTime[0];
   return today == dateString
 }
 
+const getDateAndTime = () =>{
+  const now = new Date();
+  const formattedDate = now.getFullYear() + '-' + 
+                        (now.getMonth() + 1).toString().padStart(2, '0') + '-' + 
+                        now.getDate().toString().padStart(2, '0'); // YYYY-MM-DD
+  
+  const formattedTime = now.getHours().toString().padStart(2, '0') + ':' + 
+                        now.getMinutes().toString().padStart(2, '0'); // hh:mm
+  return [formattedDate, formattedTime]
+}
 
-export {toMinSec, toMinSecStr, toSec, toAnal, getDayStreak, getPreviousDay, toMinuteAndSecondStr };
+
+export {toMinSec, toMinSecStr, toSec, toAnal, getDayStreak, getPreviousDay, toMinuteAndSecondStr, getDateAndTime};

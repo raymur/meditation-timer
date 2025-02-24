@@ -3,14 +3,6 @@ import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContai
 import {toAnal, toMinSecStr} from './Util';
 import Storage from './Storage';
 
-const DUMMY_DATA = [
-  {date: '2025-02-14', duration: 60},
-  {date: '2025-02-16', duration: 80},
-  {date: '2025-02-15', duration: 70},
-  {date: '2025-02-18', duration: 90}, 
-]
-
-
 const MeditationLog = ({logUpdated}) => {
   const [data, setData] = useState([])
   useEffect(()=>{
@@ -20,7 +12,6 @@ const MeditationLog = ({logUpdated}) => {
     }
     setData(meditations)
   }, [logUpdated])
-  // useEffect(()=>{setData(DUMMY_DATA.sort(((a,b)=>a.date>b.date)))}, [])
   return (<>
 
     <h3>Your meditation progress: </h3>
@@ -52,7 +43,6 @@ const MeditationLog = ({logUpdated}) => {
                     // labelStyle={{ display: "none" }}
                     contentStyle={{
                       borderRadius: "25px",
-                      filter: "drop-shadow(8px 8px 10px gray)",
                     }} ></Tooltip>
           <Area type="monotone" dataKey="duration" stroke="#6fb551" fill="#6fb551"  connectNulls={true}/>
         </AreaChart>

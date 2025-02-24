@@ -5,7 +5,6 @@ import TIMER_STATES from './TimerStates'
 import MeditationFinished from './MeditationFinished'
 import Timer from './Timer';
 import ZenMode from './ZenMode'
-import MeditationLog from './MeditationLog'
 import PlaySound from './PlaySound'
 import HowTo from './HowTo'
 import About from './About'

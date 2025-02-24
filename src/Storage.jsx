@@ -1,13 +1,19 @@
+import {getDateAndTime } from './Util'
+
 const MEDITATIONS = 'mediations';
 const TIMER_INCR = 'timer-increment';
 const MUTED = 'muted'
 
+
 class Storage {
-static updateMeditations = (duration) => {
+
+
+  
+static addNewMeditation = (duration) => {
     const meditations = localStorage.getItem(MEDITATIONS) || "[]";
     const meditationList = JSON.parse(meditations)
-    const date = (new Date()).toISOString().split('T')[0];
-    meditationList.push({date, duration})
+    let [date, time] = getDateAndTime()
+    meditationList.push({date, time, duration})
     localStorage.setItem(MEDITATIONS, JSON.stringify(meditationList))
     return meditationList;
   }
@@ -23,6 +29,13 @@ static updateMeditations = (duration) => {
     const mostRecent = mediations.reduce((max, e) => max.date < e.date ? e : max, {date: ''})
     return mostRecent.duration
   }
+
+  static updatedMeditations = (meditations) => {
+    const meditationString = JSON.stringify(meditations)
+    localStorage.setItem(MEDITATIONS, meditationString);
+  };
+
+
 
   static setTimerIncrement = (increment) => {
     increment = Math.max(0,increment);

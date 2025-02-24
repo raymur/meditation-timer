@@ -4,6 +4,7 @@ import Storage from "./Storage";
 import MeditationLog from "./MeditationLog";
 import DayStreak from './DayStreak'
 import { toMinuteAndSecondStr  } from "./Util";
+import MeditationChart from "./MeditationChart";
 
 const DEFAULT_INCR = 5;
 
@@ -22,7 +23,7 @@ const MeditationFinished = ({setTimerState, duration}) =>{
     timerIncr = timerIncr == null ? DEFAULT_INCR : timerIncr
     setIncr(timerIncr)
     Storage.setTimerIncrement(timerIncr)
-    const m = Storage.updateMeditations(duration);
+    const m = Storage.addNewMeditation(duration);
     setMeditations(m)
     setLogUpdated(true)
       },[])
@@ -53,6 +54,7 @@ const MeditationFinished = ({setTimerState, duration}) =>{
     <p>or  <button className='bg-[#1a1a1a]' onClick={() => setTimerState(TIMER_STATES.SET)}>meditate again</button></p>
     <br />
     <MeditationLog logUpdated={logUpdated}></MeditationLog>
+    <MeditationChart logUpdated={logUpdated} setLogUpdated={setLogUpdated}></MeditationChart>
   </div>)
 }
 export default MeditationFinished;
