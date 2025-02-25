@@ -2,14 +2,16 @@ import { useState } from "react";
 import Modal from "./Modal";
 
 const modalTitle = "The story behind Super Fuel";
-const modalBody = (
+const modalBody = (<>
   <p>
     Hey, my name is Ray. I designed and built this app with lots of love. My
     goal is to build free tools and apps that improve other's lives. I hope it
-    makes a positive impact on yours! Let me know if you have any suggestions on
-    how to improve this app. I will add a contact option soon.
-  </p>
-);
+    makes a positive impact on yours! 
+    </p>
+    <p>
+      Let me know if you have any suggestions on how to improve this app.
+    </p>
+</>);
 
 const About = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
