@@ -2,10 +2,14 @@ import React, { useEffect } from "react";
 import ReactGA from "react-ga4";
 
 const GA_TRACKING_ID = "G-LKCWQKTT4F";
-const IS_DEV = process.env.NODE_ENV === "development";
+const IS_DEV = import.meta.env.MODE === "development";
 
 const trackMeditation = (duration) => {
-  if (IS_DEV) return;
+  console.log('logging meditation')
+  if (IS_DEV) {
+    console.log('skipping GA')
+    return;
+  }
   ReactGA.event("meditation", {
     value: duration,
     unit: "seconds",
@@ -14,7 +18,11 @@ const trackMeditation = (duration) => {
 
 function GTag() {
   useEffect(() => {
-    if (IS_DEV) return;
+    if (IS_DEV) {
+
+    console.log('skipping GA')
+    return;
+    }
     ReactGA.initialize(GA_TRACKING_ID);
   }, []);
   return <></>;
