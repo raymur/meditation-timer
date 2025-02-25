@@ -76,7 +76,7 @@ function App() {
         className={
           transClass +
           (!transitioning ? " opacity-0 " : " opactiy-100 ") +
-          " m-0 p-0 sm:p-1 w-xs sm:w-lg min-h-full relative"
+          " p-0 sm:p-1 w-xs sm:w-lg min-h-full relative" + (timerState === TIMER_STATES.FINISHED ? " m-0 " : " m-auto ")
         }
       >
         <div className=" m-auto grid place-items-center h-20 w-xs px-4  sm:w-sm">

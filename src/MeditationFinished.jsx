@@ -63,14 +63,14 @@ const MeditationFinished = ({ setTimerState, duration }) => {
         Congratulations on taking the time to meditate for{" "}
         {toMinuteAndSecondStr(duration)}!
       </p>
-      <div className="mb-4">
+      {/* <div className="mb-4">
         <textarea
           placeholder="Save a note about your meditation if you'd like"
           className="w-full p-2 text-center border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6fb551] focus:border-[#6fb551] bg-[#1a1a1a] min-h-[100px]"
           value={note}
           onChange={handleNoteChange}
         ></textarea>
-      </div>
+      </div> */}
       <p>
         Come back tomorrow and meditate for
         <input
