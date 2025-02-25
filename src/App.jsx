@@ -10,6 +10,7 @@ import HowTo from "./HowTo";
 import About from "./About";
 import NoSleep from "nosleep.js";
 import GTag from "./GTag";
+import MeditationChart from "./MeditationChart";
 var noSleep = new NoSleep();
 
 function App() {
@@ -70,9 +71,9 @@ function App() {
   return (
     <>
       <GTag />
+      {/* <MeditationChart></MeditationChart> */}
       <div
         className={
-          "card" +
           transClass +
           (!transitioning ? " opacity-0 " : " opactiy-100 ") +
           " m-0 p-0 sm:p-1 w-xs sm:w-lg min-h-full relative"
@@ -168,7 +169,7 @@ function App() {
             duration={elapsed}
           ></MeditationFinished>
         )}
-        <div className="h-20">{/* hacky solution :( please keep */}</div>
+        <div className="h-24">{/* hacky solution :( please keep */}</div>
         <footer className="text-right m-1 sm:m-1 flex absolute bottom-0  ">
           <ZenMode></ZenMode>
           <PlaySound timerState={timerState}></PlaySound>
@@ -177,6 +178,7 @@ function App() {
               <>
                 <HowTo></HowTo>
                 <About></About>
+                {/* <Records ></Records> */}
               </>
             )}
         </footer>

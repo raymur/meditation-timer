@@ -11,8 +11,13 @@ import {
 import { toAnal, toMinSecStr } from "./Util";
 import Storage from "./Storage";
 
+const SM_BP = 640;
+
+
 const MeditationLog = ({ logUpdated }) => {
   const [data, setData] = useState([]);
+  const [width, setWidth] = useState(300);
+  const [height, setHeight] = useState(250);
   useEffect(() => {
     const meditations = Storage.getMeditations().sort(
       (a, b) => a.date + a.time > b.date + b.time,
@@ -22,12 +27,23 @@ const MeditationLog = ({ logUpdated }) => {
     }
     setData(meditations);
   }, [logUpdated]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const w = window.innerWidth
+        setWidth(w < SM_BP ? 350 : 500);
+        setHeight(w < SM_BP ? Math.floor(350*0.8) : 400);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <>
-      <h3>Your meditation progress: </h3>
+    <div className="w-full m-auto sm:w-[95%] flex justify-center flex-col items-center">
+      <h3 className="text-center flex">Your meditation progress: </h3>
       <AreaChart
-        width={500}
-        height={400}
+        width={width}
+        height={height}
         data={data}
         margin={{
           top: 10,
@@ -66,7 +82,7 @@ const MeditationLog = ({ logUpdated }) => {
           connectNulls={true}
         />
       </AreaChart>
-    </>
+    </div>
   );
 };
 export default MeditationLog;

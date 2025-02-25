@@ -55,7 +55,7 @@ const MeditationFinished = ({ setTimerState, duration }) => {
   return (
     <div
       className={
-        "card" + transClass + (!transitioning ? " opacity-0 " : " opactiy-100 ")
+        "w-[98%] min-w-[375px] mx-auto sm:w-[95%] md:w-[90%] lg:w-[85%] " + transClass + (!transitioning ? " opacity-0 " : " opactiy-100 ")
       }
     >
       <DayStreak meditations={meditations}></DayStreak>
@@ -92,11 +92,13 @@ const MeditationFinished = ({ setTimerState, duration }) => {
         </button>
       </p>
       <br />
-      <MeditationLog logUpdated={logUpdated}></MeditationLog>
-      <MeditationChart
-        logUpdated={logUpdated}
-        setLogUpdated={setLogUpdated}
-      ></MeditationChart>
+      <div className="w-full overflow-x-auto">
+        <MeditationLog logUpdated={logUpdated}></MeditationLog>
+        <MeditationChart
+          logUpdated={logUpdated}
+          setLogUpdated={setLogUpdated}
+        ></MeditationChart>
+      </div>
     </div>
   );
 };

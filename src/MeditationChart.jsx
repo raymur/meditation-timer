@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Storage from "./Storage";
 import { toAnal, toMinSecStr } from "./Util";
+import trashIcon from "./assets/trash.svg";
 
 const MeditationChart = ({ logUpdated, setLogUpdated }) => {
   const [meditations, setMeditations] = useState([]);
@@ -20,33 +21,30 @@ const MeditationChart = ({ logUpdated, setLogUpdated }) => {
   };
 
   return (
-    <div className="p-6 max-w-3xl mx-auto">
+    <div className=" w-full mx-0 min-w-[300px]">
       <h2 className="text-xl mb-4">Meditation Records</h2>
-      <div className="grid grid-cols-5 font-bold p-2">
-        <div>Date</div>
+      <div className="grid grid-cols-[1.5fr_1fr_1fr_0.8fr] font-bold p-2 gap-2 min-w-full">
+        <div className="whitespace-nowrap">Date</div>
         <div>Time</div>
         <div>Duration</div>
-        <div>Notes</div>
         <div>Actions</div>
       </div>
       {meditations.length > 0 ? (
         meditations.map((meditation) => (
           <div
             key={Math.random()}
-            className="grid grid-cols-5 border-t p-2 items-center"
+            className="grid grid-cols-[1.5fr_1fr_1fr_0.8fr] border-t p-2 items-center gap-2 min-w-full"
           >
-            <div>{meditation.date}</div>
-            <div>{meditation.time}</div>
-            <div>{toMinSecStr(meditation.duration)}</div>
-            <div className="truncate" title={meditation.note || "No notes"}>
-              {meditation.note || "-"}
-            </div>
+            <div className="whitespace-nowrap overflow-hidden text-ellipsis">{meditation.date}</div>
+            <div className="whitespace-nowrap overflow-hidden text-ellipsis">{meditation.time}</div>
+            <div className="whitespace-nowrap overflow-hidden text-ellipsis">{toMinSecStr(meditation.duration)}</div>
             <div>
               <button
-                className="bg-red-600 p-1 hover:border-white"
+                className="bg-red-600 p-1 hover:border-white text-white"
                 onClick={() => deleteMeditation(meditation)}
+                title="Delete"
               >
-                Delete
+                <img src={trashIcon} alt="Delete" />
               </button>
             </div>
           </div>

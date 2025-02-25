@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import Storage from "./Storage";
 import { toAnal, toMinSecStr } from "./Util";
-
+import mixerIcon from "./assets/mixer.svg";
 const DEFAULT_CUSTOM = 7 * 60 + 30;
 const SM_BP = 640;
 
@@ -69,7 +69,7 @@ function TimePicker({ setDuration, isCustomSelected, setIsCustomSelected }) {
     <>
       {isEditing ? (
         <div
-          className="w-45 p-2 text-center border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#6fb551] focus:border-[#6fb551]"
+          className="w-32 p-2 text-center border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-[#6fb551] focus:border-[#6fb551]"
           style={{
             display: "flex",
             alignItems: "center",
@@ -129,7 +129,7 @@ function TimePicker({ setDuration, isCustomSelected, setIsCustomSelected }) {
         </div>
       ) : (
         <button
-          className={`px-1 sm:px-2 w-45 py-2 m-2 sm:m-1 rounded-lg ${
+          className={`px-1 sm:px-2 w-32 py-2 m-2 sm:m-1 r((ounded-lg ${
             isCustomSelected ? "bg-[#6fb551] text-[#242424]" : "bg-[#1a1a1a]"
           }`}
           style={{
@@ -143,7 +143,7 @@ function TimePicker({ setDuration, isCustomSelected, setIsCustomSelected }) {
             setIsCustomSelected(true);
           }}
         >
-          Custom:{" "}
+          <img src={mixerIcon} alt="Mixer" style={!isCustomSelected ? {filter:'invert(100%)'} : {}}/>{" "}
           {isSmallScreen
             ? toAnal(calcDuration(min, sec))
             : toMinSecStr(calcDuration(min, sec))}{" "}
