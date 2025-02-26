@@ -2,13 +2,13 @@ import { useCallback } from "react";
 import closeIcon from "./assets/close.svg";
 
 const Modal = ({ isOpen, onClose, modalTitle, modalBody }) => {
-  // if (!isOpen) return null;
+  if (!isOpen) return null;
   const modal = useCallback((inputElement) => {
     if (inputElement) {
       inputElement.focus();
     }
   }, []);
-  const handleOnBlur = (e) => {} //onClose();
+  const handleOnBlur = (e) => onClose();
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50 p-4">
       <div

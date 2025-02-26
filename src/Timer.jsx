@@ -59,15 +59,15 @@ const Timer = ({ duration, timerState, setTimerState, setParentElapsed }) => {
             strokeLinecap="round"
           />
         </svg>
-        <div className="absolute flex items-center justify-center text-9xl font-bold">
+        <div className="absolute flex items-center justify-center text-8xl sm:text-9xl font-bold">
           {timerState != TIMER_STATES.SET &&
             timerState != TIMER_STATES.PENDING_STARTED && (
               <>{toAnal(elapsed)}</>
             )}
           {timerState == TIMER_STATES.PENDING_STARTED && (
             <div className="absolute flex items-center justify-center text-lg w-xs font-normal flex-col">
-              <p>Your meditation is about to begin.</p>
-              <p>
+              <p className="text-sm sm:text-lg">Your meditation is about to begin.</p>
+              <p className="text-sm sm:text-lg">
                 Please take a few moments to get comfortable and begin your
                 practice.
               </p>
@@ -76,8 +76,8 @@ const Timer = ({ duration, timerState, setTimerState, setParentElapsed }) => {
           )}
         </div>
       </div>
-      <div>
-        {timerState in [TIMER_STATES.STARTED, TIMER_STATES.PENDING_STARTED] &&
+      <div >
+        {(timerState == TIMER_STATES.STARTED|| timerState == TIMER_STATES.PENDING_STARTED) &&
           duration > 0 &&
           "Your meditation will be " + toMinuteAndSecondStr(duration)}
       </div>

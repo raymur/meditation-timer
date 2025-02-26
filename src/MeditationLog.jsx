@@ -31,16 +31,17 @@ const MeditationLog = ({ logUpdated }) => {
   useEffect(() => {
     const handleResize = () => {
       const w = window.innerWidth
-        setWidth(w < SM_BP ? 350 : 500);
-        setHeight(w < SM_BP ? Math.floor(350*0.8) : 400);
+        setWidth(w < SM_BP ? 350 : 425);
+        setHeight(w < SM_BP ? Math.floor(350*0.8) : 425*0.8);
     };
     window.addEventListener("resize", handleResize);
+    handleResize();
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   return (
     <div className="w-full m-auto sm:w-[95%] flex justify-center flex-col items-center">
-      <h3 className="text-center flex">Your meditation progress: </h3>
+      <h2 className="text-center flex mb-2 text-xl">Meditation progress</h2>
       <AreaChart
         width={width}
         height={height}

@@ -55,11 +55,11 @@ const MeditationFinished = ({ setTimerState, duration }) => {
   return (
     <div
       className={
-        "w-[98%] min-w-[375px] mx-auto sm:w-[95%] md:w-[90%] lg:w-[85%] " + transClass + (!transitioning ? " opacity-0 " : " opactiy-100 ")
+        "w-[98%] min-w-[375px] mx-auto sm:w-[95%] md:w-[90%] lg:w-[85%] my-4" + transClass + (!transitioning ? " opacity-0 " : " opactiy-100 ")
       }
     >
-      <DayStreak meditations={meditations}></DayStreak>
-      <p>
+      <DayStreak meditations={meditations} className='my-4'></DayStreak>
+      <p className='my-8'>
         Congratulations on taking the time to meditate for{" "}
         {toMinuteAndSecondStr(duration)}!
       </p>
@@ -72,17 +72,17 @@ const MeditationFinished = ({ setTimerState, duration }) => {
         ></textarea>
       </div> */}
       <p>
-        Come back tomorrow and meditate for
+        Meditate tomorrow for
         <input
           type="number"
           placeholder="0"
-          className="w-16 p-2 text-center border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6fb551] focus:border-[#6fb551]"
+          className="w-16 p-2 text-center border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#6fb551] focus:border-[#6fb551] "
           value={incr}
           onChange={(e) => handleSetIncr(e.target.value)}
         ></input>
         seconds longer
       </p>
-      <p>
+      <p className="my-6">
         or{" "}
         <button
           className="bg-[#1a1a1a]"
@@ -93,11 +93,17 @@ const MeditationFinished = ({ setTimerState, duration }) => {
       </p>
       <br />
       <div className="w-full overflow-x-auto">
+        <div className='m-0 p-0 my-6'>
         <MeditationLog logUpdated={logUpdated}></MeditationLog>
+
+        </div>
+        <div className='m-0 p-0 my-6'>
         <MeditationChart
           logUpdated={logUpdated}
           setLogUpdated={setLogUpdated}
         ></MeditationChart>
+
+        </div>
       </div>
     </div>
   );

@@ -17,12 +17,12 @@ const MeditationChart = ({ logUpdated, setLogUpdated }) => {
     const updatedMeditations = meditations.filter((x) => x != med);
     Storage.updatedMeditations(updatedMeditations);
     setMeditations(updatedMeditations);
-    setLogUpdated();
+    setLogUpdated(!logUpdated);
   };
 
   return (
     <div className=" w-full mx-0 min-w-[300px]">
-      <h2 className="text-xl mb-4">Meditation Records</h2>
+      <h2 className="text-xl mb-2">Meditation history</h2>
       <div className="grid grid-cols-[1.5fr_1fr_1fr_0.8fr] font-bold p-2 gap-2 min-w-full">
         <div className="whitespace-nowrap">Date</div>
         <div>Time</div>

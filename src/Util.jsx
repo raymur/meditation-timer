@@ -10,9 +10,9 @@ const toMinSecStr = (sec) => {
 
 const toMinuteAndSecondStr = (sec) => {
   const [m, s] = toMinSec(sec);
-  if (!m) return `${s} second${s > 1 ? "s" : ""}`;
-  if (!s) return `${m} minute${m > 1 ? "s" : ""}`;
-  return `${m} minute${m > 1 ? "s" : ""} and ${s} second${s > 1 ? "s" : ""}`;
+  if (!m) return `${s} second${s == 1 ? "" : "s"}`;
+  if (!s) return `${m} minute${m == 1 ? "" : "s"}`;
+  return `${m} minute${m == 1 ? "" : "s"} and ${s} second${s == 1 ? "" : "s"}`;
 };
 
 const toAnal /*og*/ = (sec) => {
