@@ -49,7 +49,8 @@ const getPreviousDay = (dateString) => {
   return date.toISOString().split("T")[0];
 };
 const isToday = (dateString) => {
-  const today = getDateAndTime[0];
+  const today = getDateAndTime()[0];
+  console.log({today, dateString})
   return today == dateString;
 };
 
