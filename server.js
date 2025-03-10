@@ -5,8 +5,11 @@ if(process.env.NODE_ENV === 'production') {
   app.use((req, res, next) => {
     const host = req.header('host').split('.');
     let isWww = null;
-    if (host[0] === 'www')
+    if (host[0] === 'www'){
+      host.reverse();
       isWww = host.pop(0);
+      host.reverse();
+    }
     const redirectHost = host.join('.')
     if (req.header('x-forwarded-proto') !== 'https')
       res.redirect(`https://${redirectHost}${req.url}`)
